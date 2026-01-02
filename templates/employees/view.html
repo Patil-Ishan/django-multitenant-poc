@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><strong>Employee Code:</strong> {{ employee.emp_code }}</p>
+<p><strong>Name:</strong> {{ employee.name }}</p>
+<p><strong>Email:</strong> {{ employee.email }}</p>
+
+<h3>Addresses</h3>
+{% if addresses %}
+    <table border="1">
+        <tr>
+            <th>City</th>
+            <th>State</th>
+        </tr>
+        {% for address in addresses %}
+            <tr>
+                <td>{{ address.city }}</td>
+                <td>{{ address.state }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No addresses found.</p>
+{% endif %}
+
+<h3>Roles</h3>
+{% if roles %}
+    <table border="1">
+        <tr>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.role }}</td>
+                <td><a href="{% url 'employees:employee_role_delete' role.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No roles assigned.</p>
+{% endif %}
+<p><a href="{% url 'employees:employee_add_role' employee.pk %}">Add Role</a></p>
+
+<p>
+    <a href="{% url 'employees:employee_list' %}">Back to List</a> |
+    <a href="{% url 'employees:employee_edit' employee.pk %}">Edit Employee</a> |
+    <a href="{% url 'employees:employee_delete' employee.pk %}">Delete Employee</a>
+</p>
+{% endblock %}

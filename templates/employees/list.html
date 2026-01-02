@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href="{% url 'employees:employee_add' %}">Add New Employee</a></p>
+
+{% if employees %}
+    <table border="1">
+        <tr>
+            <th>Employee Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.emp_code }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>
+                    <a href="{% url 'employees:employee_view' employee.pk %}">View</a> |
+                    <a href="{% url 'employees:employee_edit' employee.pk %}">Edit</a> |
+                    <a href="{% url 'employees:employee_delete' employee.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No employees found. <a href="{% url 'employees:employee_add' %}">Add the first employee</a></p>
+{% endif %}
+{% endblock %}

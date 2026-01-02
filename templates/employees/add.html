@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <label>Employee Code:</label><br>
+        {{ employee_form.emp_code }}
+        {% if employee_form.emp_code.errors %}
+            <span style="color: red;">{{ employee_form.emp_code.errors.0 }}</span>
+        {% endif %}
+    </p>
+    <p>
+        <label>Name:</label><br>
+        {{ employee_form.name }}
+    </p>
+    <p>
+        <label>Email:</label><br>
+        {{ employee_form.email }}
+    </p>
+    
+    <p>
+        <label>City:</label><br>
+        {{ address_form.city }}
+    </p>
+    <p>
+        <label>State:</label><br>
+        {{ address_form.state }}
+    </p>
+    
+    <p>
+        <button type="submit">Save Employee</button>
+        <a href="{% url 'employees:employee_list' %}">Cancel</a>
+    </p>
+</form>
+{% endblock %}

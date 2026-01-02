@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <label>Role:</label><br>
+        {{ form.role }}
+    </p>
+    
+    <p>
+        <button type="submit">Add Role</button>
+        <a href="{% url 'employees:employee_view' employee.pk %}">Cancel</a>
+    </p>
+</form>
+{% endblock %}

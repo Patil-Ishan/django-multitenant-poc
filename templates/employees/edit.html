@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <label>Employee Code:</label><br>
+        {{ form.emp_code }}
+        {% if form.emp_code.errors %}
+            <span style="color: red;">{{ form.emp_code.errors.0 }}</span>
+        {% endif %}
+    </p>
+    <p>
+        <label>Name:</label><br>
+        {{ form.name }}
+    </p>
+    <p>
+        <label>Email:</label><br>
+        {{ form.email }}
+    </p>
+    
+    <p>
+        <button type="submit">Update Employee</button>
+        <a href="{% url 'employees:employee_view' employee.pk %}">Cancel</a>
+    </p>
+</form>
+{% endblock %}
