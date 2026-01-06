@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'easy_tenants',
     'core',
     'employees',
@@ -122,3 +123,7 @@ STATIC_URL = 'static/'
 
 # django-easy-tenants configuration
 EASY_TENANTS_TENANT_FIELD = 'tenant'
+
+# Django REST Framework configuration
+REST_FRAMEWORK = {
+}
